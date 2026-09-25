@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/guests"
+  to = "/.netlify/functions/guests"
+  status = 200
+
+[[redirects]]
+  from = "/api/rsvps"
+  to = "/.netlify/functions/rsvps"
+  status = 200

@@ -1,0 +1,2 @@
+Final build: 2026-09-26
+Persistent RSVP backend: Netlify Functions + Netlify Blobs
