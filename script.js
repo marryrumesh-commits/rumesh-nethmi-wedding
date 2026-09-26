@@ -1,7 +1,7 @@
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const pre = $('#preloader'), opening = $('#opening'), site = $('#site'), wipe = $('#pageWipe');
-  const params = new URLSearchParams(location.search); const guest = params.get('name') ? decodeURIComponent(params.get('name')).trim() : '';
+  const params = new URLSearchParams(location.search); const guest = params.get('name') ? params.get('name').trim() : '';
   const displayGuest = guest || 'Guest';
   $('#guestGreeting').textContent = guest ? `Dear ${displayGuest}` : 'Dear Guest';
   $('#heroGuest').textContent = guest ? `A place has been saved especially for ${displayGuest}.` : 'A place has been saved especially for you.';
@@ -73,7 +73,8 @@
       $('#rsvpStatus').textContent='Thank you — your response has been received with love.';
       form.reset(); setCount(1); countWrap.classList.remove('show'); toast('RSVP received');
     }catch(err){
-      $('#rsvpStatus').textContent='We could not save your RSVP right now. Please try again.';
+      console.error('RSVP submission failed:',err);
+      $('#rsvpStatus').textContent='We could not save your RSVP: '+(err.message||'Please try again.');
       toast('RSVP could not be saved');
     }finally{ submit.disabled=false; submit.style.opacity=''; }
   });
